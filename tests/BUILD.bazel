@@ -5,6 +5,7 @@ cc_test(
     srcs = ["hello_test.cpp"],
     deps = [
         "//src:rest_api_helper",
+        "@googletest//:gtest",
         "@googletest//:gtest_main",
     ],
 )
