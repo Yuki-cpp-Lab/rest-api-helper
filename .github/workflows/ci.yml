@@ -8,7 +8,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
 
     steps:
     - uses: actions/checkout@v4
@@ -27,10 +30,11 @@ jobs:
     - name: Test
       run: bazel test //...
 
-    - name: Check Clang Format
-      if: !cancelled()
-      run: bazel build //... --config=clang-format
-
+    # Only for Linux builds
     - name: Check Clang Tidy
-      if: !cancelled()
+      if: ${{ runner.os == 'Linux' && !cancelled() }}
       run: bazel build //... --config=clang-tidy
+
+    - name: Check Clang Format
+      if: ${{ runner.os == 'Linux' && !cancelled() }}
+      run: bazel build //... --config=clang-format
