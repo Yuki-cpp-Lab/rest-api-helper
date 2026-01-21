@@ -1,0 +1,10 @@
+load("@rules_cc//cc:defs.bzl", "cc_test")
+
+cc_test(
+    name = "unit_tests",
+    srcs = ["hello_test.cpp"],
+    deps = [
+        "//src:rest_api_helper",
+        "@googletest//:gtest_main",
+    ],
+)
