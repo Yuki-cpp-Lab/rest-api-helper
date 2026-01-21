@@ -28,9 +28,9 @@ jobs:
       run: bazel test //...
 
     - name: Check Clang Format
-      if: always()
+      if: !cancelled()
       run: bazel build //... --config=clang-format
 
     - name: Check Clang Tidy
-      if: always()
+      if: !cancelled()
       run: bazel build //... --config=clang-tidy
