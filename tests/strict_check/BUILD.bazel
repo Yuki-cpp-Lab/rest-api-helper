@@ -1,0 +1,6 @@
+load("//build_utils:defs.bzl", "strict_cc_test")
+
+strict_cc_test(
+    name = "strict_test",
+    srcs = ["test.cpp"],
+)
