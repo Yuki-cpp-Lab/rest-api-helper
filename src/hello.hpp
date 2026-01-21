@@ -1,5 +1,4 @@
-#ifndef SRC_HELLO_HPP_
-#define SRC_HELLO_HPP_
+#pragma once
 
 #include <string>
 
@@ -15,5 +14,3 @@ private:
 };
 
 } // namespace rest_api_helper
-
-#endif // SRC_HELLO_HPP_

@@ -1,4 +1,5 @@
 #include "src/hello.hpp"
+
 #include "gtest/gtest.h"
 
 TEST(GreeterTest, SayHello) {
