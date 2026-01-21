@@ -1,13 +1,13 @@
-load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("//build_utils:defs.bzl", "strict_cc_binary", "strict_cc_library")
 
-cc_library(
+strict_cc_library(
     name = "rest_api_helper",
     srcs = ["hello.cpp"],
     hdrs = ["hello.hpp"],
     visibility = ["//visibility:public"],
 )
 
-cc_binary(
+strict_cc_binary(
     name = "example_app",
     srcs = ["main.cpp"],
     deps = [":rest_api_helper"],
