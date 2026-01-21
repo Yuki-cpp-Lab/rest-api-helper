@@ -30,9 +30,11 @@ jobs:
     - name: Test
       run: bazel test //...
 
+    # Only for Linux builds
     - name: Check Clang Tidy
+      if: ${{ runner.os == 'Linux' && !cancelled() }}
       run: bazel build //... --config=clang-tidy
 
     - name: Check Clang Format
-      if: ${{ !cancelled() }}
+      if: ${{ runner.os == 'Linux' && !cancelled() }}
       run: bazel build //... --config=clang-format

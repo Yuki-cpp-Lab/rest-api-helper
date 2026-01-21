@@ -1,5 +1,4 @@
-build --cxxopt=-std=c++20
-build --host_cxxopt=-std=c++20
+
 
 # Clang-tidy configuration
 build:clang-tidy --aspects @bazel_clang_tidy//clang_tidy:clang_tidy.bzl%clang_tidy_aspect
