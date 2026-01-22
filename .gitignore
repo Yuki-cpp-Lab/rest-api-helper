@@ -44,3 +44,6 @@ bazel-app
 bazel-bin
 bazel-out
 bazel-testlogs
+
+
+compile_commands.json
