@@ -30,6 +30,9 @@ jobs:
     - name: Test
       run: bazel test //...
 
+    - name: Refresh Compile Commands
+      run: bazel build //:refresh_compile_commands
+
     # Only for Linux builds
     - name: Check Clang Tidy
       if: ${{ runner.os == 'Linux' && !cancelled() }}
