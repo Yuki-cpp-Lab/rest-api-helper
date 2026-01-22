@@ -13,6 +13,8 @@ A simple helper library for C++ aimed at making the creation of REST APIs easier
 
 This library is designed to be used with Bazel with Bzlmod enabled.
 
+### 1. Add dependency to `MODULE.bazel`
+
 Add the following to your `MODULE.bazel`:
 
 ```python
@@ -20,7 +22,19 @@ Add the following to your `MODULE.bazel`:
 bazel_dep(name = "rest_api_helper", version = "0.0.1")
 ```
 
-Or if you are building it locally/vendoring, you can point to it.
+### 2. Add dependency to your `BUILD` file
+
+In your `BUILD` or `BUILD.bazel` file, add the library to your target's `deps`:
+
+```python
+cc_binary(
+    name = "my_app",
+    srcs = ["main.cpp"],
+    deps = [
+        "@rest_api_helper//src:rest_api_helper",
+    ],
+)
+```
 
 ## Usage
 

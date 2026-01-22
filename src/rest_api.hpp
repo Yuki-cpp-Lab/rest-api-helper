@@ -34,6 +34,9 @@ std::string http_method_to_string(HTTPMethod method);
  *
  * This class wraps an httplib::Server and provides a structured way to add routes
  * and endpoints, automatically generating documentation for them.
+ *
+ * @note The user is responsible for managing the lifecycle of the httplib::Server instance,
+ * including starting the server (e.g., server.listen()) and configuring SSL/TLS if required.
  */
 class RestAPI
 {

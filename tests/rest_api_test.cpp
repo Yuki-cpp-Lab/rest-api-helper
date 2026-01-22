@@ -23,9 +23,8 @@ protected:
     }
 
     void StartServer() {
-        // Find a free port or just use a fixed one.
-        // Using 0 usually lets the OS pick one, but httplib::bind_to_port + listen_after_bind is needed.
-        // For simplicity, let's try a fixed port and hope it's free, or retry.
+        // Note: Using a fixed port because dynamic port binding (bind_to_port(0))
+        // was unreliable in the CI environment.
         port_ = 12345;
         server_thread_ = std::thread([this]() {
             server_->listen("127.0.0.1", port_);
@@ -34,7 +33,7 @@ protected:
         // Wait for server to start
         int retries = 0;
         while (!server_->is_running() && retries < 50) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            std::this_thread::sleep_for(std::chrono::milliseconds(20));
             retries++;
         }
     }

@@ -29,7 +29,7 @@ git_override(
 # LLVM Setup
 llvm = use_extension("@toolchains_llvm//toolchain/extensions:llvm.bzl", "llvm", dev_dependency = True)
 llvm.toolchain(
-    llvm_version = "17.0.6",
+    llvm_version = "21.1.6",
 )
 use_repo(llvm, "llvm_toolchain")
 register_toolchains("@llvm_toolchain//:all", dev_dependency = True)
@@ -40,9 +40,4 @@ git_override(
     module_name = "hedron_compile_commands",
     remote = "https://github.com/mikael-s-persson/bazel-compile-commands-extractor.git",
     commit = "f5fbd4cee671d8d908f37c83abaf70fba5928fc7",
-)
-
-single_version_override(
-    module_name = "cpp-httplib",
-    patches = ["patches/disable_ssl.patch"],
 )
