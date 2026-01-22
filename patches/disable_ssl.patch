@@ -1,0 +1,13 @@
+--- BUILD.bazel
++++ BUILD.bazel
+@@ -7,9 +7,7 @@
+     includes = ["."],
+     deps = [
+-        "@boringssl//:ssl",
+         "@zlib//:zlib",
+     ],
+     copts = [
+-        "-DCPPHTTPLIB_OPENSSL_SUPPORT",
+         "-DCPPHTTPLIB_ZLIB_SUPPORT",
+     ],
+     visibility = ["//visibility:public"],

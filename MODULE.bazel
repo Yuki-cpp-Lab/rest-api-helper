@@ -41,3 +41,8 @@ git_override(
     remote = "https://github.com/mikael-s-persson/bazel-compile-commands-extractor.git",
     commit = "f5fbd4cee671d8d908f37c83abaf70fba5928fc7",
 )
+
+single_version_override(
+    module_name = "cpp-httplib",
+    patches = ["patches/disable_ssl.patch"],
+)

@@ -1,20 +1,13 @@
-load("//build_utils:defs.bzl", "strict_cc_binary", "strict_cc_library")
+load("//build_utils:defs.bzl", "strict_cc_library")
 
 strict_cc_library(
     name = "rest_api_helper",
-    srcs = ["hello.cpp"],
-    hdrs = ["hello.hpp"],
+    srcs = ["rest_api.cpp"],
+    hdrs = ["rest_api.hpp"],
     visibility = ["//visibility:public"],
 
     deps = [
         "@cpp-httplib",
         "@nlohmann_json//:json",
     ],
-)
-
-strict_cc_binary(
-    name = "example_app",
-    srcs = ["main.cpp"],
-    deps = [":rest_api_helper"],
-    visibility = ["//visibility:private"],
 )

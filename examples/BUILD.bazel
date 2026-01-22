@@ -1,0 +1,8 @@
+load("//build_utils:defs.bzl", "strict_cc_binary")
+
+strict_cc_binary(
+    name = "basic_usage",
+    srcs = ["basic_usage.cpp"],
+    deps = ["//src:rest_api_helper"],
+    visibility = ["//visibility:private"],
+)
