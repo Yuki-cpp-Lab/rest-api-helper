@@ -5,6 +5,11 @@ strict_cc_library(
     srcs = ["hello.cpp"],
     hdrs = ["hello.hpp"],
     visibility = ["//visibility:public"],
+
+    deps = [
+        "@cpp-httplib",
+        "@nlohmann_json//:json",
+    ],
 )
 
 strict_cc_binary(
