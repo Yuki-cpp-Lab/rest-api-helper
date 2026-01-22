@@ -1,6 +1,6 @@
-load("@rules_cc//cc:defs.bzl", "cc_test")
+load("//build_utils:defs.bzl", "strict_cc_test")
 
-cc_test(
+strict_cc_test(
     name = "unit_tests",
     srcs = ["hello_test.cpp"],
     deps = [

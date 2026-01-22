@@ -3,9 +3,11 @@ module(
     version = "0.0.1",
 )
 
+bazel_dep(name = "platforms", version = "1.0.0")
 bazel_dep(name = "rules_cc", version = "0.2.16")
 bazel_dep(name = "cpp-httplib", version = "0.22.0")
-bazel_dep(name = "platforms", version = "1.0.0")
+bazel_dep(name = "nlohmann_json", version = "3.12.0.bcr.1")
+
 
 bazel_dep(name = "googletest", version = "1.17.0", dev_dependency = True)
 bazel_dep(name = "toolchains_llvm", version = "1.6.0", dev_dependency = True)
@@ -36,6 +38,6 @@ register_toolchains("@llvm_toolchain//:all", dev_dependency = True)
 bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
 git_override(
     module_name = "hedron_compile_commands",
-    commit = "0e990032f3c5a866e72615cf67e5ce22186dcb97",
-    remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
+    remote = "https://github.com/mikael-s-persson/bazel-compile-commands-extractor.git",
+    commit = "f5fbd4cee671d8d908f37c83abaf70fba5928fc7",
 )
