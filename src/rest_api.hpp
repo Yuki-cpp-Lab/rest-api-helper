@@ -21,7 +21,6 @@ enum class HTTPMethod
     HTTP_PUT,
 };
 
-
 /**
  * @brief A helper class to manage REST API routes and documentation.
  *
@@ -91,7 +90,8 @@ class RestAPI
      *
      * @param path The path for the route, relative to the base API route.
      * @param description A description of the route resource.
-     * @param path_parameters_descriptions A map of path parameter names to their descriptions (optional).
+     * @param path_parameters_descriptions A map of path parameter names to their descriptions
+     * (optional).
      * @return yuki::web::RestAPI::Route& A reference to the created Route object.
      */
     yuki::web::RestAPI::Route&
