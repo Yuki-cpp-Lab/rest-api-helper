@@ -21,13 +21,6 @@ enum class HTTPMethod
     HTTP_PUT,
 };
 
-/**
- * @brief Converts HTTPMethod enum to its string representation.
- *
- * @param method The HTTPMethod to convert.
- * @return std::string The string representation of the method (e.g., "GET").
- */
-std::string http_method_to_string(HTTPMethod method);
 
 /**
  * @brief A helper class to manage REST API routes and documentation.

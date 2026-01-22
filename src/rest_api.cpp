@@ -5,6 +5,8 @@
 namespace yuki::web
 {
 
+namespace
+{
 std::string http_method_to_string(HTTPMethod method)
 {
     switch (method)
@@ -21,6 +23,7 @@ std::string http_method_to_string(HTTPMethod method)
             return "UNKNOWN";
     }
 }
+}  // namespace
 
 RestAPI::Route::Route(httplib::Server& server,
                       nlohmann::json& endpoints_documentation,
