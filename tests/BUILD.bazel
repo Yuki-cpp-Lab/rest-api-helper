@@ -1,4 +1,4 @@
-load("//build_utils:defs.bzl", "strict_cc_test")
+load("@build_utils//:defs.bzl", "strict_cc_test")
 
 strict_cc_test(
     name = "unit_tests",

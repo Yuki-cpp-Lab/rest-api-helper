@@ -1,5 +1,4 @@
 
-
 # Clang-tidy configuration
 build:clang-tidy --aspects @bazel_clang_tidy//clang_tidy:clang_tidy.bzl%clang_tidy_aspect
 build:clang-tidy --output_groups=report
@@ -21,4 +20,3 @@ build:clang-format --config=clang-format-base \
 build:clang-format-fix --config=clang-format-base \
     --aspects=@bazel_clang_format//:defs.bzl%fix_aspect \
     --use_action_cache=false
-

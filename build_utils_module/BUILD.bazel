@@ -1,3 +1,4 @@
 package(default_visibility = ["//visibility:public"])
 
+# Export defs.bzl so it can be loaded by other modules
 exports_files(["defs.bzl"])

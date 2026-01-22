@@ -1,4 +1,4 @@
-load("//build_utils:defs.bzl", "strict_cc_binary")
+load("@build_utils//:defs.bzl", "strict_cc_binary")
 
 strict_cc_binary(
     name = "basic_usage",
