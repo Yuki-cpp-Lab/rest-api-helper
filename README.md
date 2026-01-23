@@ -1,95 +1,84 @@
-# rest-api-helper
+# Rest API Helper
 
-A simple helper library for C++ aimed at making the creation of REST APIs easier and cleaner. It is built on top of [cpp-httplib](https://github.com/yhirose/cpp-httplib) and [nlohmann/json](https://github.com/nlohmann/json).
+A C++ library to simplify the creation of REST APIs using `cpp-httplib`, featuring automatic documentation generation.
 
 ## Features
 
-- **Route Management**: Define routes and endpoints with a fluent API.
-- **Auto-Documentation**: Automatically generates a JSON documentation endpoint for your API.
-- **Parameter Descriptions**: Add descriptions for path parameters and request/response details.
-- **Bazel Support**: Ready to be integrated into Bazel projects.
+- **Route Management**: Organize routes and endpoints hierarchically.
+- **Auto-Documentation**: Automatically generates a JSON schema of your API endpoints.
+- **Easy Integration**: Wraps `httplib::Server` for seamless integration.
 
 ## Installation
 
-This library is designed to be used with Bazel with Bzlmod enabled.
+This project uses Bazel for building and dependency management.
 
-### 1. Add dependency to `MODULE.bazel`
+### Dependency
 
-Add the following to your `MODULE.bazel`:
+Add `rest_api_helper` to your `MODULE.bazel`. If you are using it locally:
 
-```python
-# Assuming you have this in a registry or local override
+```starlark
 bazel_dep(name = "rest_api_helper", version = "0.0.1")
-```
-
-### 2. Add dependency to your `BUILD` file
-
-In your `BUILD` or `BUILD.bazel` file, add the library to your target's `deps`:
-
-```python
-cc_binary(
-    name = "my_app",
-    srcs = ["main.cpp"],
-    deps = [
-        "@rest_api_helper//src:rest_api_helper",
-    ],
+local_path_override(
+    module_name = "rest_api_helper",
+    path = "path/to/rest_api_helper",
 )
 ```
 
 ## Usage
 
-Here is a simple example of how to use the library:
-
 ```cpp
-#include <httplib.h>
 #include "src/rest_api.hpp"
+#include <httplib.h>
 
-int main()
-{
-    httplib::Server server;
-    // Initialize the API helper with a base route "/api"
-    yuki::web::RestAPI api(server, "/api");
+int main() {
+    httplib::Server svr;
+    yuki::web::RestAPI api(svr, "/api/v1");
 
-    // Enable the documentation endpoint at "/api/docs"
-    api.add_docs_endpoint("docs");
+    // Add a route
+    auto& users_route = api.add_route("users", "Operations on users");
 
-    // Add a route "/api/hello"
-    auto& hello_route = api.add_route("hello", "A simple hello route");
-
-    // Add a GET endpoint to the route
-    hello_route.add_endpoint(
+    // Add an endpoint to the route
+    users_route.add_endpoint(
         yuki::web::HTTPMethod::HTTP_GET,
-        [](const httplib::Request&, httplib::Response& res) {
-            res.set_content("Hello, World!", "text/plain");
+        [](const httplib::Request& req, httplib::Response& res) {
+            res.set_content("List of users", "text/plain");
         },
-        "Returns a hello message"
+        "Get all users"
     );
 
-    // Start the server
-    server.listen("0.0.0.0", 8080);
+    // Add documentation endpoint
+    api.add_docs_endpoint("docs");
 
+    svr.listen("0.0.0.0", 8080);
     return 0;
 }
 ```
 
-See `examples/basic_usage.cpp` for a more complete example.
+## Build System
 
-## Building and Testing
+This project is built with Bazel and relies on a separate `build_utils` module for toolchain configuration and strict compilation flags.
 
-To build the library:
+### Modules
+
+- **rest_api_helper**: The main library.
+- **build_utils**: Provides toolchains (LLVM) and strict build macros.
+
+### Building
 
 ```bash
-bazel build //src:rest_api_helper
+bazel build //...
 ```
 
-To run the tests:
+### Testing
 
 ```bash
-bazel test //tests:unit_tests
+bazel test //...
 ```
 
-## Dependencies
+### Formatting
 
-- [cpp-httplib](https://github.com/yhirose/cpp-httplib)
-- [nlohmann/json](https://github.com/nlohmann/json)
-- [googletest](https://github.com/google/googletest) (for testing)
+To automatically format the code using the project's configuration:
+
+```bash
+bazel build //... --config=clang-format-fix
+```

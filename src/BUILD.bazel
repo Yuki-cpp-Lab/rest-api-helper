@@ -1,4 +1,4 @@
-load("//build_utils:defs.bzl", "strict_cc_library")
+load("@build_utils//:defs.bzl", "strict_cc_library")
 
 strict_cc_library(
     name = "rest_api_helper",
