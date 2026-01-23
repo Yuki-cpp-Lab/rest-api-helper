@@ -15,10 +15,6 @@ bazel_dep(name = "bazel_clang_tidy", version = "0.0.1", dev_dependency = True)
 
 # Build Utils
 bazel_dep(name = "build_utils", version = "0.0.1")
-local_path_override(
-    module_name = "build_utils",
-    path = "build_utils_module",
-)
 
 # LLVM Setup
 llvm = use_extension("@toolchains_llvm//toolchain/extensions:llvm.bzl", "llvm", dev_dependency = True)
